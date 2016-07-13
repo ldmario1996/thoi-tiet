@@ -4,17 +4,20 @@
 //
 //  Created by Thang Le on 7/12/16.
 //  Copyright © 2016 Thang Le. All rights reserved.
-//  
+//  check xem da tinh xong chua neu chua tinh xong thi tra lai 
+
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController
+{
     
     @IBOutlet weak var cityLabel: UILabel!
     
     @IBOutlet weak var quoteLabel: UILabel!
     
-    @IBAction func tempButton(sender: UIButton) {
+    @IBAction func tempButton(sender: UIButton)
+    {
 //        print(tempOutlet.titleLabel!)
         let randomNumber = Double((tempOutlet.titleLabel?.text)!)
         if( degreeFC == true)
@@ -22,7 +25,7 @@ class ViewController: UIViewController {
         {
             fahrCelLabel.text = "F"
             degreeFC = false
-            let doF = randomNumber! * 1.8 + 32
+            let   doF = randomNumber! * 1.8 + 32
            tempOutlet.setTitle(String(doF), forState: .Normal)
             print(doF)
         }
@@ -35,6 +38,8 @@ class ViewController: UIViewController {
             degreeFC = true
             print(doC)
         }
+        tempOutlet.enabled = false
+        NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "enaDisaButton", userInfo: nil, repeats: false)
     }
 
     @IBOutlet weak var degreeOutlet: UILabel!
@@ -78,8 +83,7 @@ class ViewController: UIViewController {
     
     var background = ["Blood.png","Moon.png","Sun.png"]
     
-    var degreeFC:Bool!;
-    var enableButton:Bool;
+    var degreeFC: Bool!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,5 +104,11 @@ class ViewController: UIViewController {
     {
         return Double(arc4random_uniform(18) + 14) + Double(arc4random()) / Double(INT32_MAX)
     }
-   }
+    func enaDisaButton()
+    {
+        tempOutlet.enabled = true
+    }
+    
+}
+
 
